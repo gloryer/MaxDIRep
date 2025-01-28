@@ -1,7 +1,7 @@
 import sys
 from tensorflow import keras
 sys.path.append("../")
-from models.fmnist_random import VAEGAN_random
+from models.fmnist import VAEGAN
 from preprocessing.fmnist import load_mnist_random
 
 
@@ -37,7 +37,7 @@ if __name__ =="__main__":
         print('x_target_test: {0}'.format(x_target_test.shape))
         print('y_target_test: {0}'.format(y_target_test.shape))
 
-        model = VAEGAN_random(x_source_train, y_source_train,
+        model = VAEGAN(x_source_train, y_source_train,
                              x_target_train_labeled, y_target_train_labeled,
                              x_target_train_unlabeled, y_target_train_unlabeled,
                              x_source_test, y_source_test,

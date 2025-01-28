@@ -1,7 +1,7 @@
 import sys
 from tensorflow import keras
 sys.path.append("../")
-from models.fmnist_no import VAEGAN_NO
+from models.fmnist import VAEGAN
 from preprocessing.fmnist import load_mnist_no_cheating
 
 

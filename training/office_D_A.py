@@ -8,15 +8,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 np_config.enable_numpy_behavior()
 
-from models.office import VAEGAN
-from preprocessing.office_data import load_imagenette, get_Xy
+from models.office_31 import VAEGANImagenette
+from preprocessing.office_31_data import load_imagenette, get_Xy
 from sklearn.preprocessing import OneHotEncoder
 
 if __name__ =="__main__":
     # The generator is a ResNet50 pretrained on ImageNet data
     # We use a pretrained decoder trained on the imagenette dataset
     # pretrained decoder is not included in the current repo since its size exceeds the max file size limit.
-    decoder = tf.keras.models.load_model('../pretrained_models/pretrained_decoder')
+    decoder = tf.keras.models.load_model('../pretrained_decoder')
 
     # load imagenette data
     # VAE is also trained on the imagenette data during domain adaptation
@@ -73,7 +73,7 @@ if __name__ =="__main__":
     #decoder = ResNet_decoder(True,"resnet50",(7,7,2051))
 
 
-    model =VAEGAN(x_source_train, y_source_train, x_target_train, y_target_train,
+    model =VAEGANImagenette(x_source_train, y_source_train, x_target_train, y_target_train,
                 x_image_train, x_image_test, x_source_test, y_source_test, x_target_test, y_target_test, base_model, decoder, epochs=60)
 
     generator, encoder, decoder = model.train()

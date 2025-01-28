@@ -17,29 +17,45 @@
 
 ## Running the Experiment
 
-This repository implements the experiments mentioned in the paper.
+This repository implements MaxDIRep and evaluates it on the benchmark datasets mentioned in the paper.
 
-**CIFAR-10 with cheating-color-plane** 
-    python cifar_bias.py 
+
 
 **Fashion-MNIST with cheating-bit** 
+
     python fm_nocheat.py
     python fm_random.py
     python fm_shift.py
-**Digits datasets**
 
-MINIST to MNIST-M, SVHN to MNIST, Synth Digits to SVHN
-    python mnist_mnistm.py
-    python svhn_mnist.py
-    python synth_svhn.py
 
-**Office dataset**
+**Office-31 dataset**
 
-DSLR to Amazon, Webcam to Amazon
+DSLR to Amazon, Webcam to Amazon, Webcam to DSLR, Amazon to DSLR
+
     python office_D_A.py
     python office_W_A.py
+    python office_W_D.py
+    python office_A_D.py
 
-GitHub limits the size of files allowed in repositories so we omit the datasets, which will be released publicly for study. 
+
+
+**Office-Home dataset**
+
+Ar to Cl, Ar to Pr, Ar to Rw, Pr to Rw,  Rw to Pr
+
+    python office_Ar_Cl.py
+    python office_Ar_Pr.py
+    python office_Ar_Rw.py
+    python office_Pr_Rw.py
+    python office_Rw_Pr.py
+
+
+
+
+Due to GitHub's file size limitations, we have omitted the Fashion-MNIST synthetic dataset from this repository. It will be released publicly for study. 
+
+
+
 
 [//]: # ()
 [//]: # (## Results)
@@ -77,5 +93,7 @@ GitHub limits the size of files allowed in repositories so we omit the datasets,
 
 <img src="fig/reconstruction-FM.jpg" width="500"/>
 
- Columns 1 and 4, original images; 2 and 6, reconstructions
-of originals; 3 and 5, reconstructions with domain bit flipped.
+ Effects of flipping the domain bit. Columns 1 and 4 are
+the original images; columns 2 and 6 show reconstructions
+of originals; columns 3 and 5 show reconstructions with the
+domain bit flipped.
