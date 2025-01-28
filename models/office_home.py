@@ -435,18 +435,7 @@ class VAEGAN(object):
     
     
     
-class MyDecay(LearningRateSchedule):
 
-    def __init__(self, max_steps=1000, mu_0=0.01, alpha=10, beta=0.75):
-        self.mu_0 = mu_0
-        self.alpha = alpha
-        self.beta = beta
-        self.max_steps = float(max_steps)
-
-    def __call__(self, step):
-        p = step / self.max_steps
-        return self.mu_0 / (1+self.alpha * p)**self.beta
-    
 
  
     
@@ -578,12 +567,7 @@ class VAEGANWithDiscriminatorLoss(object):
         self.dec_optimizer = keras.optimizers.SGD(learning_rate=MyDecay(mu_0=self.lr/5, alpha=self.alpha), momentum=self.momentum, nesterov=True)
         
         
-        # self.task_optimizer= keras.optimizers.Adam(0.0002,0.5) 
-        # self.gen_optimizer = keras.optimizers.Adam(0.0002,0.5) 
-        # self.disc_optimizer = keras.optimizers.Adam(0.0002,0.5) 
-        # self.enc_optimizer = keras.optimizers.Adam(0.0002,0.5) 
-        # self.dec_optimizer = keras.optimizers.Adam(0.0002,0.5) 
-        
+    
         
         self.train_task_loss = tf.keras.metrics.Mean()
         self.train_disc_loss = tf.keras.metrics.Mean()
@@ -626,21 +610,7 @@ class VAEGANWithDiscriminatorLoss(object):
         target = np.tile([0,1], (x_target_train.shape[0], 1))
         domain_labels = np.concatenate([source, target], axis = 0)
         
-        # invert_source = np.tile([0,1], (x_source_train.shape[0], 1))
-        # invert_target = np.tile([1,0], (x_target_train.shape[0], 1))
-        
-        
-        # domain_bit_shape_source=[x_source_train.shape[0], self.latent_dim[0], self.latent_dim[1], 1]
-        # domain_bit_shape_target=[x_target_train.shape[0], self.latent_dim[0], self.latent_dim[1], 1]
-        # domain_bit_source = tf.zeros(domain_bit_shape_source)
-        # domain_bit_target = tf.ones(domain_bit_shape_target)
-        
-    
-        
-        #domain_bit_source = np.array(([0] * x_source_train.shape[0])).reshape((-1, 1))
-        #domain_bit_target = np.array(([1] * x_target_train.shape[0])).reshape((-1, 1))
-       # domain_labels = np.concatenate([source, target], axis = 0)
-        #invert_domain_labels = np.concatenate([invert_source, invert_target], axis = 0)
+       
 
         x_both = tf.concat([x_source_train, x_target_train], axis = 0)
 
@@ -741,13 +711,7 @@ class VAEGANWithDiscriminatorLoss(object):
     
     def test_batch(self, x_source_test, y_source_test, x_target_test, y_target_test):
         
-        # domain_bit_shape_source=[x_source_test.shape[0], self.latent_dim[0],self.latent_dim[1], 1]
-        # domain_bit_shape_target=[x_target_test.shape[0], self.latent_dim[0],self.latent_dim[1], 1]
-        # domain_bit_source = tf.zeros(domain_bit_shape_source)
-        # domain_bit_target = tf.ones(domain_bit_shape_target)
-       
-        #domain_bit_source = np.array(([0] * x_source_test.shape[0])).reshape((-1, 1))
-        #domain_bit_target = np.array(([1] * x_target_test.shape[0])).reshape((-1, 1))
+
         
         
         
@@ -855,30 +819,7 @@ class VAEGANWithDiscriminatorLoss(object):
         
         source_test_dataset = tf.data.Dataset.from_tensor_slices((self.x_source_test, self.y_source_test)).batch(self.batch_size)
         target_test_dataset = tf.data.Dataset.from_tensor_slices((self.x_target_test, self.y_target_test)).batch(self.batch_size)
-        
-#         datagen_source = tf.keras.preprocessing.image.ImageDataGenerator(
-#                 #featurewise_center=True,
-#                 #featurewise_std_normalization=True,
-#                 #width_shift_range=0.2,
-#                 #eight_shift_range=0.2,
-#                 horizontal_flip=True)
-        
-#         datagen_target = tf.keras.preprocessing.image.ImageDataGenerator(
-#                 #featurewise_center=True,
-#                 #featurewise_std_normalization=True,
-#                 #rotation_range=20,
-#                 #width_shift_range=0.2,
-#                 #height_shift_range=0.2,
-#                 horizontal_flip=True)
-        
-#         datagen_source.fit(self.x_source_train)
-#         datagen_target.fit(self.x_target_train)
-        
-        # print(self.generator.summary())
-        # print(self.classifier.summary())
-        # print(self.discriminator.summary())
-        # print(self.encoder.summary())
-        # print(self.decoder.summary())
+
         
         
         for epoch in range(self.epochs):
@@ -888,16 +829,6 @@ class VAEGANWithDiscriminatorLoss(object):
             for (source_images, class_labels), (target_images, _) in zip(source_train_dataset, target_train_dataset):
                 self.train_batch(source_images, class_labels, target_images, epoch)
             
-            # for (source_images, class_labels), (target_images, _) in zip(datagen_source.flow(self.x_source_train, self.y_source_train, batch_size =self.batch_size), datagen_target.flow(self.x_target_train, self.y_target_train, batch_size =self.batch_size)):
-            #     self.train_batch(source_images, class_labels, target_images, epoch)
-            #     batches += 1
-            #     if batches > self.x_source_train.shape[0] / self.batch_size:
-            #         # we need to break the loop by hand because
-            #         # the generator loops indefinitely
-            #         break
-        
-                    
-            #print(batches)
 
                 
 

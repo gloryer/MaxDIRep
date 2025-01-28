@@ -37,18 +37,6 @@ class MyDecay(LearningRateSchedule):
         return self.mu_0 / (1 + self.alpha * p) ** self.beta
 
 
-class MyDecay(LearningRateSchedule):
-
-    def __init__(self, max_steps=1000, mu_0=0.01, alpha=10, beta=0.75):
-        self.mu_0 = mu_0
-        self.alpha = alpha
-        self.beta = beta
-        self.max_steps = float(max_steps)
-
-    def __call__(self, step):
-        p = step / self.max_steps
-        return self.mu_0 / (1+self.alpha * p)**self.beta
-    
 
  
     
@@ -452,7 +440,7 @@ class VAEGAN(object):
         return self.generator, self.encoder, self.decoder
 
     
-    
+
     
     
     
