@@ -1,0 +1,8 @@
+scipy
+pandas
+seaborn
+tensorflow==2.9.0
+keras-applications
+git+https://github.com/qubvel/classification_models.git
+
+
