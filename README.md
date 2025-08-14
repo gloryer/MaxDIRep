@@ -16,7 +16,7 @@
 
 ## Download the dataset 
 
-Please download the [dataset](https://zenodo.org/records/16878116) from Zenodo and place it under the root directory. Run ```tar -xzvf data.tar.gz``` to unpack the compressed file and do not change the name of the extracted folder (the name should be ```/data```). 
+Please download the [dataset](https://zenodo.org/records/16878116) from Zenodo and place it under the root directory. Run ```tar -xzvf data.tar.gz``` to unpack the compressed file and do not change the names of the extracted folders (the names should be ```/data``` and ```/pretrained_decoder```). 
 
 Run ```pip install -r requirements.txt``` to install the required packages. 
 
