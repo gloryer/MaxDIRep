@@ -62,7 +62,7 @@ Ar to Cl, Ar to Pr, Ar to Rw, Pr to Rw,  Rw to Pr
 
 If you use this repository, please cite:
 ```
-@inproceedings{li2024maximal,
+@inproceedings{li2025maximal,
   author    = {Li, Adrian Shuai and Bertino, Elisa and Dang, Xuan-Hong and Singla, Ankush and Tu, Yuhai and Wegman, Mark N.},
   title     = {Maximizing Information in Domain-Invariant Representation Improves Transfer Learning},
   booktitle = {2025 IEEE 11th International Conference on Collaboration and Internet Computing (CIC)},
